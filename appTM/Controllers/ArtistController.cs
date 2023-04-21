@@ -47,12 +47,12 @@ namespace appTM.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Create(Artist artist)
         {
-            // Voorwaarde: Het kunnen toevoegen van nieuwe band(s) of nummers met alle details die ook in
-            // de JSON staan waarbij de naam natuurlijk niet dubbel voor mag komen
+            // Requirement: Adding  new Artists of Songs with all details which are also
+            // present in the JSON, where the name can not be already in the Database.
             var item = _context.Artists.Where(p => p.Name.Equals(artist.Name)).FirstOrDefault(); 
             if (item != null) return BadRequest(item);
 
-            // Dit kan ook
+            // Also possible:
             //foreach (var artiest in _context.artists)
             //{
             //    if (artiest.Name.Equals(artist.Name)) return BadRequest(artiest);
